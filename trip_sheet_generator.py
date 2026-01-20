@@ -123,12 +123,14 @@ def generate_trip_sheets(excel_file_path, output_pdf_path, watermark_image_path)
             [P("Trip Sheet No:", "Label"), P(r["SL NO"]),
              P("TRIP SHEET", "Label"), P("Date:", "Label"), P(r["DATE"])],
 
-            [P("Guest Name:", "Label"), P(r["NAME"]), "", "", ""],
+            # ✅ FIXED HERE
+            [P("Guest Name:", "Label"), P(r["EMP NAME"]), "", "", ""],
 
             [P("Cab Booked:", "Label"), P(r["CAB TYPE"]),
              P("Car No:", "Label"), P(r["CAB REG NO"]), ""],
 
-            [P("Driver Name:", "Label"), P(r["EMP NAME"]),
+            # ✅ FIXED HERE
+            [P("Driver Name:", "Label"), P(r["NAME"]),
              P("Driver Mob:", "Label"), P(r["MOBIL NO"]), ""],
 
             [P("Reporting Time:", "Label"), P(r["PICKUP TIME"]),
@@ -178,7 +180,7 @@ def generate_trip_sheets(excel_file_path, output_pdf_path, watermark_image_path)
 
         story.append(table)
 
-        # ---------- SIGNATURE (BOTTOM RIGHT) ----------
+        # ---------- SIGNATURE ----------
         story.append(Spacer(1, 6 * mm))
         signature_table = Table(
             [[Paragraph("Signature", styles["SignatureRight"])]],
